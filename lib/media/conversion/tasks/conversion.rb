@@ -22,7 +22,7 @@ module Media
             conversion.running!
 
             result = processor.call(command(temp.path)) do |progress|
-              conversion.update(progress: progress.to_d)
+              conversion.update(progress: progress.to_f)
             end
 
             if result.success?

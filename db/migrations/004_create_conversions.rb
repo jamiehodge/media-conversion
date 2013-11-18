@@ -8,7 +8,7 @@ Sequel.migration do
 
       uuid :resource_id, null: false
 
-      numeric :progress, default: 0.0, null: false
+      float :progress, default: 0.0, null: false
 
       timestamps
       lock_version
