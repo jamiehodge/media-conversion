@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/itmedia/media-ffmpeg.git
-  revision: 7d7c3342ae581ba5f922312de6cb715427069f67
+  revision: 81a2b6658e17c01dbbe1786211bd0c1222ab6fb9
   specs:
     media-ffmpeg (0.0.1)
 
@@ -21,10 +21,11 @@ GIT
       sequel_pg
 
 GIT
-  remote: git://github.com/itmedia/media-process.git
-  revision: 9d6939a1130cb3e33af4127f8fdb3f38ef6e507b
+  remote: git://github.com/itmedia/media-queue.git
+  revision: 211280adb7d840e44f69932137535dc9f615e5a6
   specs:
-    media-process (0.0.1)
+    media-queue (0.0.1)
+      queue_classic
 
 GIT
   remote: git://github.com/itmedia/media-web.git
@@ -50,6 +51,8 @@ GEM
     pg (0.17.0)
     puma (2.6.0)
       rack (>= 1.1, < 2.0)
+    queue_classic (2.2.3)
+      pg (~> 0.17.0)
     rack (1.5.2)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -80,6 +83,6 @@ DEPENDENCIES
   media-client!
   media-ffmpeg!
   media-persistence!
-  media-process!
+  media-queue!
   media-web!
   rake
