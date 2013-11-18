@@ -1,0 +1,9 @@
+json = collection.map {|item|
+  {
+    id: item.id,
+    url: url(item.id),
+    extension: item.extension,
+    types: item.types,
+    command: item.command
+  }
+}

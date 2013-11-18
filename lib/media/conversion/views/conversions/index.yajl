@@ -1,0 +1,10 @@
+json = collection.map {|item|
+  {
+    id: item.id,
+    url: url(item.id),
+    converter_id: item.converter_id,
+    resource_id: item.resource_id,
+    progress: item.progress.to_f,
+    state: item.state.name
+  }
+}

@@ -1,0 +1,63 @@
+require "media/client"
+require "media/ffmpeg"
+require "media/process"
+require "tempfile"
+
+module Media
+  module Conversion
+    module Tasks
+      class Conversion
+
+        attr_reader :id, :model, :processor, :resourcer
+
+        def initialize(id, options = {})
+          @id = id
+          @model = options.fetch(:model) { Models::Conversion }
+          @processor = options.fetch(:processor) { FFMPEG::Conversion }
+          @resourcer = options.fetch(:resourcer) { Client::Service::Resource.new(ENV["RESOURCE_URL"]) }
+        end
+
+        def call
+          Tempfile.open(["conversion", converter.extension]) do |temp|
+            conversion.running!
+
+            result = processor.call(command(temp.path)) do |progress|
+              conversion.update(progress: progress.to_d)
+            end
+
+            if result.success?
+              conversion.update(file: temp)
+              conversion.completed!
+            else
+              conversion.failed!
+            end
+          end
+        rescue
+          conversion.failed!
+        end
+
+        private
+
+        def conversion
+          @conversion ||= model[id]
+        end
+
+        def converter
+          conversion.converter
+        end
+
+        def input
+          resource[:file][:url]
+        end
+
+        def resource
+          @resource ||= resourcer.show(conversion.resource_id)
+        end
+
+        def command(output)
+          converter.command.map {|segment| ERB.new(segment).result(binding) }
+        end
+      end
+    end
+  end
+end
