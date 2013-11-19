@@ -1,3 +1,4 @@
+require "erb"
 require "media/client"
 require "media/ffmpeg"
 require "media/queue"
