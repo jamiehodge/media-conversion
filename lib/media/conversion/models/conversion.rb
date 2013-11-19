@@ -24,7 +24,7 @@ module Media
 
         def after_create
           super
-          Tasks::Conversion.new(id, resourcer: MockService).call
+          Tasks::Conversion.enqueue(id: id)
         end
 
         def running!
@@ -40,13 +40,5 @@ module Media
         end
       end
     end
-  end
-end
-
-module MockService
-  extend self
-
-  def show(id)
-    { file: { url: "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"}}
   end
 end
