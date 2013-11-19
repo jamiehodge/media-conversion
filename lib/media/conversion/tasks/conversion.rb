@@ -1,11 +1,13 @@
 require "media/client"
 require "media/ffmpeg"
+require "media/queue"
 require "tempfile"
 
 module Media
   module Conversion
     module Tasks
       class Conversion
+        extend Queueable
 
         attr_reader :id, :model, :processor, :resourcer
 
