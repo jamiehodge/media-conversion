@@ -9,10 +9,6 @@ module Media
 
         storable
 
-        def converter
-          Converter[converter_id] if converter_id
-        end
-
         def extension
           converter.extension
         end
