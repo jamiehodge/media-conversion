@@ -9,10 +9,10 @@ module Media
 
         attr_reader :id, :model, :processor, :resourcer
 
-        def initialize(id, options = {})
-          @id = id
-          @model = options.fetch(:model) { Models::Conversion }
-          @processor = options.fetch(:processor) { FFMPEG::Conversion }
+        def initialize(params = {})
+          @id        = params.fetch(:id)
+          @model     = params.fetch(:model) { Models::Conversion }
+          @processor = params.fetch(:processor) { FFMPEG::Conversion }
           @resourcer = options.fetch(:resourcer) { Client::Service::Resource.new(ENV["RESOURCE_URL"]) }
         end
 
