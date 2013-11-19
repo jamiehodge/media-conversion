@@ -8,6 +8,7 @@ module Media
         many_to_one :state
 
         storable
+        transitionable
 
         def extension
           converter.extension
@@ -17,6 +18,11 @@ module Media
           self.state ||= State::PENDING
           validates_uuid [:converter_id, :state_id, :resource_id]
           super
+        end
+
+        def validate
+          super
+          validates_transition :state_id
         end
 
         def after_create
@@ -34,6 +40,16 @@ module Media
 
         def failed!
           update(state: State::FAILED)
+        end
+
+        def state_id_transitions
+          {
+            nil                 => [ State::PENDING.id ],
+            State::PENDING.id   => [ State::RUNNING.id ],
+            State::RUNNING.id   => [ State::COMPLETED.id, State::FAILED.id ],
+            State::COMPLETED.id => [],
+            State::FAILED.id    => []
+          }
         end
       end
     end
