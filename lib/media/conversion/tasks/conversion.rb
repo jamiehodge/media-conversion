@@ -52,7 +52,7 @@ module Media
         end
 
         def input
-          resource[:file][:url]
+          resource.body[:file][:url]
         end
 
         def resource
