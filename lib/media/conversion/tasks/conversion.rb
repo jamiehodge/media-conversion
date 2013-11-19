@@ -4,6 +4,8 @@ require "media/ffmpeg"
 require "media/queue"
 require "tempfile"
 
+require_relative "../models"
+
 module Media
   module Conversion
     module Tasks
