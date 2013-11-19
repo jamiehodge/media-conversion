@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: git://github.com/itmedia/media-persistence.git
-  revision: b0bcd5800012a31d6e0ced191632e00ad4b9c3cd
+  revision: 01414329a6f47b6a99beb3a626992fd9c4f5cdbb
   specs:
     media-persistence (0.0.1)
       sequel
@@ -22,10 +22,10 @@ GIT
 
 GIT
   remote: git://github.com/itmedia/media-queue.git
-  revision: 211280adb7d840e44f69932137535dc9f615e5a6
+  revision: 87c18d9d63774c8b9f177f81821eca5fcc4d6a0f
   specs:
     media-queue (0.0.1)
-      queue_classic
+      queue_classic (~> 2.2)
 
 GIT
   remote: git://github.com/itmedia/media-web.git
