@@ -16,6 +16,7 @@ module Media
         def before_validation
           self.state ||= State::PENDING
           validates_uuid [:converter_id, :state_id, :resource_id]
+          super
         end
 
         def after_create
