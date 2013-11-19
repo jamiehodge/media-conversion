@@ -1,6 +1,5 @@
 require "media/client"
 require "media/ffmpeg"
-require "media/process"
 require "tempfile"
 
 module Media
