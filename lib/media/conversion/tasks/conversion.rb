@@ -37,7 +37,7 @@ module Media
             end
           end
         rescue => e
-          logger.error("#{e.message} (#{e.class}): #{e.backtrace.join("\n")}")
+          self.class.logger.error("#{e.message} (#{e.class}): #{e.backtrace.join("\n")}")
           conversion.failed!
         end
 
